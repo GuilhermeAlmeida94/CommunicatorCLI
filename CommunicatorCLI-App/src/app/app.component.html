@@ -1,0 +1,41 @@
+<mat-sidenav-container class="cli-container">
+  <mat-sidenav mode="side" opened>
+    <h3>Máquinas</h3>
+    <ul>
+      <li *ngFor="let registry of registries">
+        <input *ngIf="registry.On" type="checkbox"
+               [(ngModel)]="registry.Checked"
+               [ngModelOptions]="{standalone: true}"
+               [attr.disable]="!registry.On">
+        {{registry.MachineName}}
+        <span *ngIf="registry.On" class="dotGreen"></span>
+        <span *ngIf="!registry.On" class="dotRed"></span> <br />
+        IP: {{registry.IP}} <br />
+        Versão do Windows:
+        <ul>
+          <li>
+            {{registry.WindowsVersion}}
+          </li>
+        </ul>
+        Versão do .Net: {{registry.DotNetVersion}} <br />
+        Antivírus: {{registry.Antivirus}} <br />
+        Firewall: <br/>
+        <ul>
+          <li *ngFor="let firewallStatus of registry.FirewallStatus">
+            {{ firewallStatus }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div fxFlex fxLayout="column">
+      <textarea fxFlex readonly>{{returnText}}</textarea>
+      <div fxFlex="5" fxLayout="row">
+        <input fxFlex="90" #newCommand
+               (keyup.enter)="sendCommand(newCommand.value); newCommand.value=''">
+        <button fxFlex="10" (click)="sendCommand(newCommand.value); newCommand.value=''">Enviar!</button>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
