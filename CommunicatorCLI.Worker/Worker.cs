@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
-using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using System.Net.WebSockets;
 using System.Text;
@@ -12,6 +10,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using CommunicatorCLI.Common.Models;
 using CommunicatorCLI.Common.Enums;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace CommunicatorCLI.Worker
 {
@@ -19,7 +20,7 @@ namespace CommunicatorCLI.Worker
     {
         private readonly ILogger<Worker> _logger;
         private readonly String _address = "localhost";
-        private readonly String _port = "5001";
+        private readonly String _port = "5000";
 
         public Worker(ILogger<Worker> logger)
         {
@@ -28,7 +29,7 @@ namespace CommunicatorCLI.Worker
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            String serverUriConnection = $"wss://{_address}:{_port}/ws";
+            String serverUriConnection = $"ws://{_address}:{_port}/ws";
 
             MessageModel registryMessage = new MessageModel()
             {
@@ -41,7 +42,7 @@ namespace CommunicatorCLI.Worker
                 using (var socket = new ClientWebSocket())
                 {
                     try
-                    {
+                    {                            
                         await socket.ConnectAsync(new Uri(serverUriConnection), stoppingToken);
                         await Send(socket, JsonSerializer.Serialize(registryMessage), stoppingToken);
                         await FilterMessageByWebSocket(socket, stoppingToken);

@@ -1,0 +1,28 @@
+.cli-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+  }
+  h3 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .dotGreen {
+    height: 15px;
+    width: 15px;
+    background-color: #2bb915;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dotRed {
+    height: 15px;
+    width: 15px;
+    background-color: #d71818;
+    border-radius: 50%;
+    display: inline-block;
+  }

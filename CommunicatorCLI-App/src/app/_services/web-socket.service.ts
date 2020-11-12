@@ -8,14 +8,14 @@ import { Message } from '../_models/message';
 export class WebSocketService {
     private socket: WebSocket;
     private address = 'localhost';
-    private port = '5001';
+    private port = '5000';
     registries$: BehaviorSubject<Registry> = new BehaviorSubject<Registry>(null);
     returnText$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
     constructor() { }
 
     startSocket(): void  {
-      this.socket = new WebSocket('wss://' + this.address + ':' + this.port + '/ws');
+      this.socket = new WebSocket(`ws://${this.address}:${this.port}/ws`);
       this.socket.addEventListener('open', (ev => {
         console.log('opened');
       }));

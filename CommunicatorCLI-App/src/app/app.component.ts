@@ -33,6 +33,7 @@ export class AppComponent {
     socketService.returnText$.subscribe(rt => {
       this.returnText += rt;
     });
+    socketService.startSocket();
   }
 
   OnInit(): void {

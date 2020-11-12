@@ -1,5 +1,4 @@
 using CommunicatorCLI.API.Services;
-using CommunicatorCLI.API.Store;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -11,17 +10,12 @@ namespace CommunicatorCLI.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration) { }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddSingleton(typeof(DeviceService), new DeviceService(new FileStore()));
+            services.AddSingleton(typeof(DeviceService), new DeviceService());
+            services.AddCors(opt => opt.AddDefaultPolicy(p => p.AllowAnyOrigin()));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -31,14 +25,8 @@ namespace CommunicatorCLI.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-            app.UseRouting();
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
             app.UseWebSockets();
+            app.UseCors();
 
             app.Use(async (context, next) =>
             {
@@ -60,6 +48,7 @@ namespace CommunicatorCLI.API
                     await next();
                 }
             });
+            app.UseStaticFiles();
         }
     }
 }
