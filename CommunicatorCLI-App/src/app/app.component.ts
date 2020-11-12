@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Registry } from './_models/registry';
 import { Message } from './_models/message';
 import { CommandInput } from './_models/command-input';
@@ -10,7 +10,7 @@ import { MessageType } from './_enums/message-type.enum';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   showFiller = false;
   registries: Registry[] = [];
   returnText = '';
@@ -33,10 +33,9 @@ export class AppComponent {
     socketService.returnText$.subscribe(rt => {
       this.returnText += rt;
     });
-    socketService.startSocket();
   }
 
-  OnInit(): void {
+  ngOnInit(): void {
     this.socketService.startSocket();
   }
 

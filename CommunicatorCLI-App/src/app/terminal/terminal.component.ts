@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-terminal',
@@ -7,7 +7,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TerminalComponent implements OnInit {
 
-  @Input() returnText: string;
   @Output() newItemEvent = new EventEmitter<string>();
 
   constructor() { }

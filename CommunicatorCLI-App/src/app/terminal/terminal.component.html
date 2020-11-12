@@ -1,8 +1,3 @@
-<div fxFlex fxLayout="column">
-  <textarea fxFlex readonly>{{returnText}}</textarea>
-  <div fxFlex="5" fxLayout="row">
-    <input fxFlex="90" #newCommand
-            (keyup.enter)="sendCommand(newCommand.value); newCommand.value=''">
-    <button fxFlex="10" (click)="sendCommand(newCommand.value); newCommand.value=''">Enviar!</button>
-  </div>
-</div>
+<input #newCommand
+        (keyup.enter)="sendCommand(newCommand.value); newCommand.value=''">
+<button (click)="sendCommand(newCommand.value); newCommand.value=''">Enviar!</button>

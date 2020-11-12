@@ -1,2 +1,9 @@
-    <app-nav-registries [registries]="registries"></app-nav-registries>
-    <app-terminal [returnText]="returnText" (newItemEvent)="sendCommand($event)"></app-terminal>
+<div class="container-fluid">
+    <div class="row">
+        <app-nav-registries [registries]="registries"></app-nav-registries>
+        <main class="col-md-9">
+            <app-historic [returnText]="returnText"></app-historic>
+            <app-terminal (newItemEvent)="sendCommand($event)"></app-terminal>
+        </main>
+    </div>
+</div>

@@ -13,13 +13,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistryComponent } from './registry/registry.component';
 import { NavRegistriesComponent } from './nav-registries/nav-registries.component';
 import { TerminalComponent } from './terminal/terminal.component';
+import { HistoricComponent } from './historic/historic.component';
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
       RegistryComponent,
       NavRegistriesComponent,
-      TerminalComponent
+      TerminalComponent,
+      HistoricComponent
    ],
   imports: [
     BrowserModule,
