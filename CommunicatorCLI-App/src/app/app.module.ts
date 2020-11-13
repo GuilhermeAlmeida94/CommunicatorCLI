@@ -14,14 +14,16 @@ import { RegistryComponent } from './registry/registry.component';
 import { NavRegistriesComponent } from './nav-registries/nav-registries.component';
 import { TerminalComponent } from './terminal/terminal.component';
 import { HistoricComponent } from './historic/historic.component';
+import { ContentComponent } from './content/content.component';
 
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
       RegistryComponent,
       NavRegistriesComponent,
       TerminalComponent,
-      HistoricComponent
+      HistoricComponent,
+      ContentComponent
    ],
   imports: [
     BrowserModule,

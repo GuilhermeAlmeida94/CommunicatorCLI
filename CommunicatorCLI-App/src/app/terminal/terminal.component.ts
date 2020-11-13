@@ -7,12 +7,12 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class TerminalComponent implements OnInit {
 
-  @Output() newItemEvent = new EventEmitter<string>();
+  @Output() terminalEvent = new EventEmitter<string>();
 
   constructor() { }
 
-  sendCommand(value: string): void {
-    this.newItemEvent.emit(value);
+  terminalAction(value: string): void {
+    this.terminalEvent.emit(value);
   }
 
   ngOnInit(): void {

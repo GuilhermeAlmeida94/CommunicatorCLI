@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HistoricComponent implements OnInit {
 
-  @Input() returnText: string;
+  @Input() historicReturnText: string;
 
   constructor() { }
 

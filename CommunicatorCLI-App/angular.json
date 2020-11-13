@@ -123,5 +123,10 @@
       }
     }
   },
-  "defaultProject": "CommunicatorCLI-App"
+  "defaultProject": "CommunicatorCLI-App",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "css"
+    }
+  }
 }
