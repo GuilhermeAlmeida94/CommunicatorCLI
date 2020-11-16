@@ -126,7 +126,8 @@
   "defaultProject": "CommunicatorCLI-App",
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "css"
+      "styleext": "css",
+      "style": "scss"
     }
   }
 }

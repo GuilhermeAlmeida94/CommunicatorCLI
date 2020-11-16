@@ -1,24 +1,34 @@
-<div>
-  <input *ngIf="registry.On" type="checkbox"
-  [(ngModel)]="registry.Checked"
-  [ngModelOptions]="{standalone: true}"
-  [attr.disable]="!registry.On">
-  {{registry.MachineName}}
-  <span *ngIf="registry.On" class="dotGreen"></span>
-  <span *ngIf="!registry.On" class="dotRed"></span> <br />
-  IP: {{registry.IP}} <br />
-  Versão do Windows:
-  <ul>
-    <li>
-      {{registry.WindowsVersion}}
-    </li>
-  </ul>
-  Versão do .Net: {{registry.DotNetVersion}} <br />
-  Antivírus: {{registry.Antivirus}} <br />
-  Firewall: <br/>
-  <ul>
-    <li *ngFor="let firewallStatus of registry.FirewallStatus">
-      {{ firewallStatus }}
-    </li>
-  </ul>
+<div class="card">
+  <div class="card-header" id="headingOne">
+    <h2 class="mb-0">
+      <button class="btn btn-link btn-block text-left"
+              type="button" data-toggle="collapse"
+              (click)="registry.On = !registry.On"
+              [attr.aria-expanded]="!registry.On" aria-controls="collapseBasic">
+        <input *ngIf="registry.On" type="checkbox"
+        [(ngModel)]="registry.Checked"
+        [ngModelOptions]="{standalone: true}"
+        [attr.disable]="!registry.On">
+        {{registry.MachineName}}
+        <span *ngIf="registry.On" class="dotGreen"></span>
+        <span *ngIf="!registry.On" class="dotRed"></span>
+      </button>
+    </h2>
+  </div>
+
+  <div id="collapseBasic" [collapse]="registry.On" [isAnimated]="true">
+    <div class="card-body">
+      
+        IP: {{registry.IP}}<br>
+        Versão do Windows: {{registry.WindowsVersion}}<br/>
+        Versão do .Net: {{registry.DotNetVersion}}<br/>
+        Antivírus: {{registry.Antivirus}}<br/>
+        Firewall: 
+        <ul>
+          <li *ngFor="let firewallStatus of registry.FirewallStatus">
+            {{ firewallStatus }}
+          </li>
+        </ul>
+    </div>
+  </div>
 </div>
