@@ -1,4 +1,4 @@
-export class Registry {
+export interface Registry {
     MachineName: string;
     IP: string;
     Antivirus: string;
@@ -6,6 +6,8 @@ export class Registry {
     DotNetVersion: string;
     Disk: any;
     FirewallStatus: string[];
+
+    Collapsed: boolean;
     Checked: boolean;
     On: boolean;
 }

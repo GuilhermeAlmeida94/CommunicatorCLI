@@ -3,8 +3,8 @@
     <h2 class="mb-0">
       <button class="btn btn-link btn-block text-left"
               type="button" data-toggle="collapse"
-              (click)="registry.On = !registry.On"
-              [attr.aria-expanded]="!registry.On" aria-controls="collapseBasic">
+              (click)="registry.Collapsed = !registry.Collapsed"
+              [attr.aria-expanded]="!registry.Collapsed" [attr.aria-controls]="registry.MachineName">
         <input *ngIf="registry.On" type="checkbox"
         [(ngModel)]="registry.Checked"
         [ngModelOptions]="{standalone: true}"
@@ -16,9 +16,8 @@
     </h2>
   </div>
 
-  <div id="collapseBasic" [collapse]="registry.On" [isAnimated]="true">
+  <div [attr.id]="registry.MachineName" [collapse]="!registry.Collapsed" [isAnimated]="true">
     <div class="card-body">
-      
         IP: {{registry.IP}}<br>
         Versão do Windows: {{registry.WindowsVersion}}<br/>
         Versão do .Net: {{registry.DotNetVersion}}<br/>

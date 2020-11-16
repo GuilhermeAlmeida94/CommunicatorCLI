@@ -1,4 +1,10 @@
-<li class="nav-item">Máquinas</li>
 <div class="accordion" id="accordionExample" *ngFor="let registryItem of registries">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h4 class="mb-0">
+        Máquinas
+      </h4>
+    </div>
+  </div>
   <app-registry [registry]="registryItem"></app-registry>
 </div>

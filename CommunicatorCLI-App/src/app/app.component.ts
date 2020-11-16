@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   showFiller = false;
   registries: Registry[] = [];
   returnText = '';
+  showBar = false;
 
   constructor(private socketService: WebSocketService) {
     socketService.registries$.subscribe(registry => {
