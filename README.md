@@ -41,7 +41,7 @@ Os seguintes pontos serão considerados para uma boa avaliação do seu projeto.
 
 # CommunicatorCLI
 ## Tecnologias utilizadas
-- .Net Core 3.1.6
+- .NET Core 5.0.0
 - Angular 10.0.6
 
 ## Antes de instalar o CommunicatorCLI.Worker
