@@ -17,5 +17,7 @@
             <app-registries-nav-bar [registries]="registries"></app-registries-nav-bar>
         </div>
     </nav>
-    <app-content [contentReturnText]="returnText" (contentEvent)="sendCommand($event)"></app-content>
+    <div>
+        <app-content [contentReturnText]="returnText" (contentEvent)="sendCommand($event)"></app-content>
+    </div>
 </div>

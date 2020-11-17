@@ -2,13 +2,13 @@
   <div class="card-header" id="headingOne">
     <h2 class="mb-0">
       <button class="btn btn-link btn-block text-left"
-              type="button" data-toggle="collapse"
-              (click)="registry.Collapsed = !registry.Collapsed"
-              [attr.aria-expanded]="!registry.Collapsed" [attr.aria-controls]="registry.MachineName">
+        type="button" data-toggle="collapse"
+        (click)="registry.Collapsed = !registry.Collapsed"
+        [attr.aria-expanded]="!registry.Collapsed" [attr.aria-controls]="registry.MachineName">
         <input *ngIf="registry.On" type="checkbox"
-        [(ngModel)]="registry.Checked"
-        [ngModelOptions]="{standalone: true}"
-        [attr.disable]="!registry.On">
+          [(ngModel)]="registry.Checked"
+          [ngModelOptions]="{standalone: true}"
+          [attr.disable]="!registry.On">
         {{registry.MachineName}}
         <span *ngIf="registry.On" class="dotGreen"></span>
         <span *ngIf="!registry.On" class="dotRed"></span>

@@ -1,3 +1,4 @@
-<input #newCommand
+<div class="terminal">
+    <input #newCommand class="col-md-12"
         (keyup.enter)="terminalAction(newCommand.value); newCommand.value=''">
-<button (click)="terminalAction(newCommand.value); newCommand.value=''">Enviar!</button>
+</div>

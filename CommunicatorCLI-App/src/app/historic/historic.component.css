@@ -1,0 +1,7 @@
+.historic {
+    grid-area: historic;
+}
+textarea.historic {
+    height: 100%;
+    width: 100%;
+}
