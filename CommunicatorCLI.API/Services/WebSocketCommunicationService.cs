@@ -1,5 +1,4 @@
-using CommunicatorCLI.API.Store;
-using CommunicatorCLI.API.Helpers;
+using CommunicatorCLI.API.Storage;
 using CommunicatorCLI.Common.Enums;
 using CommunicatorCLI.Common.Models;
 using CommunicatorCLI.Common.Extensions;
@@ -21,6 +20,11 @@ namespace CommunicatorCLI.API.Services
             _leaders = new ConcurrentDictionary<string, WebSocket>();
         private ConcurrentDictionary<RegistryModel, WebSocket>
             _followers = new ConcurrentDictionary<RegistryModel, WebSocket>();
+        private IStorage _storage { get; }
+
+        public WebSocketCommunicationService(IStorage storage){
+            _storage = storage;
+        }
 
         public async Task ReceiveWebSocket(WebSocket websocket)
         {
@@ -69,7 +73,7 @@ namespace CommunicatorCLI.API.Services
 
         public async Task SendCommand(CommandModel commandInput)
         {
-            FileHelper.Write(commandInput.MachineNames, $"[COMMAND]>> {commandInput.Command}\n");
+            _storage.SaveLog(commandInput.MachineNames, $"[COMMAND]>> {commandInput.Command}\n");
             var followerToSendArray = _followers
                     .Where(x => commandInput.MachineNames.Contains(x.Key.MachineName) &&
                         x.Value.State == WebSocketState.Open)
@@ -81,7 +85,7 @@ namespace CommunicatorCLI.API.Services
         {
             String machineName = _followers.Where(x => x.Value == webSocketCommandResult)
                 .FirstOrDefault().Key.MachineName;
-            FileHelper.Write(machineName, $"[RESULT]>> {commandResult}");
+            _storage.SaveLog(machineName, $"[RESULT]>> {commandResult}");
 
             MessageModel message = new MessageModel()
             {

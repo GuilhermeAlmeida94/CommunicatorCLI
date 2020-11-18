@@ -1,12 +1,11 @@
 using CommunicatorCLI.API.Builder;
 using CommunicatorCLI.API.Infrastructure;
-using CommunicatorCLI.API.Services;
+using CommunicatorCLI.API.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Net.WebSockets;
 
 namespace CommunicatorCLI.API
 {
@@ -16,7 +15,7 @@ namespace CommunicatorCLI.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddWebSocketCommunication();
+            services.AddWebSocketCommunication(new FileStorage());
             services.AddCors(opt => opt.AddDefaultPolicy(p => p.AllowAnyOrigin()));
         }
 
