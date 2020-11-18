@@ -1,10 +1,10 @@
 import { MessageType } from '../_enums/message-type.enum';
 import { Registry } from './registry';
-import { CommandInput } from './command-input';
+import { Command } from './command';
 
 export class Message {
     MessageType: MessageType;
-    CommandInput: CommandInput;
-    CommandOutput: string;
+    Command: Command;
+    CommandResult: string;
     Registry: Registry;
 }

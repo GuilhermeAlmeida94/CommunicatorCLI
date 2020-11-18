@@ -1,3 +1,5 @@
+using CommunicatorCLI.API.Builder;
+using CommunicatorCLI.API.Infrastructure;
 using CommunicatorCLI.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +16,7 @@ namespace CommunicatorCLI.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(typeof(DeviceService), new DeviceService());
+            services.AddWebSocketCommunication();
             services.AddCors(opt => opt.AddDefaultPolicy(p => p.AllowAnyOrigin()));
         }
 
@@ -27,27 +29,8 @@ namespace CommunicatorCLI.API
 
             app.UseWebSockets();
             app.UseCors();
+            app.UseWebSocketCommunication(new BusinessOptions(){ Path =  "/ws" });
 
-            app.Use(async (context, next) =>
-            {
-                if (context.Request.Path == "/ws")
-                {
-                    if (context.WebSockets.IsWebSocketRequest)
-                    {
-                        WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
-                        var deviceService = (DeviceService)app.ApplicationServices.GetService(typeof(DeviceService));
-                        await deviceService.FilterMessageByWebSocket(webSocket);
-                    }
-                    else
-                    {
-                        context.Response.StatusCode = 400;
-                    }
-                }
-                else
-                {
-                    await next();
-                }
-            });
             app.UseStaticFiles();
         }
     }

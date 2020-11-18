@@ -7,7 +7,7 @@ namespace CommunicatorCLI.Common.Models
     {
         public MessageTypeEnum MessageType { get; set; }
         public RegistryModel Registry { get; set; }
-        public CommandInputModel CommandInput { get; set; }
-        public String CommandOutput { get; set; }
+        public CommandModel Command { get; set; }
+        public String CommandResult { get; set; }
     }
 }

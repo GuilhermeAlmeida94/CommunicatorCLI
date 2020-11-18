@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Registry } from './_models/registry';
 import { Message } from './_models/message';
-import { CommandInput } from './_models/command-input';
+import { Command } from './_models/command';
 import { WebSocketService } from './_services/web-socket.service';
 import { MessageType } from './_enums/message-type.enum';
 
@@ -51,9 +51,9 @@ export class AppComponent implements OnInit {
 
       const message = new Message();
       message.MessageType = MessageType.CommandSend;
-      message.CommandInput = new CommandInput();
-      message.CommandInput.MachineNames = MachineNameToSend;
-      message.CommandInput.Command = command;
+      message.Command = new Command();
+      message.Command.MachineNames = MachineNameToSend;
+      message.Command.Command = command;
 
       this.returnText += '>> ' + command + '\n';
 

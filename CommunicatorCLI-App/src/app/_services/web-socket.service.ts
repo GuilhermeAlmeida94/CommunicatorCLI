@@ -20,21 +20,21 @@ export class WebSocketService {
         console.log('opened');
       }));
       this.socket.addEventListener('message', (ev => {
-        const messageBox = JSON.parse(ev.data);
-        console.log('message object', messageBox);
-        switch (messageBox.MessageType) {
+        const message = JSON.parse(ev.data);
+        console.log('message object', message);
+        switch (message.MessageType) {
           case MessageType.LogOn:
-            messageBox.Registry.On = true;
-            messageBox.Registry.Checked = false;
-            this.registries$.next(messageBox.Registry);
+            message.Registry.On = true;
+            message.Registry.Checked = false;
+            this.registries$.next(message.Registry);
             break;
           case MessageType.LogOff:
-            messageBox.Registry.On = false;
-            messageBox.Registry.Checked = false;
-            this.registries$.next(messageBox.Registry);
+            message.Registry.On = false;
+            message.Registry.Checked = false;
+            this.registries$.next(message.Registry);
             break;
-          case MessageType.CommandReturn:
-            this.returnText$.next(messageBox.CommandOutput);
+          case MessageType.CommandResult:
+            this.returnText$.next(message.CommandResult);
             break;
           default:
             break;

@@ -1,4 +1,4 @@
-export class CommandInput {
+export class Command {
     MachineNames: string[];
     Command: string;
 }
